@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Daftar Produk',
-      home: ChangeNotifierProvider(
-        create: (Context) => ProductProvider(),
-        child: const Skeleton(),
+    return ChangeNotifierProvider(
+      create: (context) => ProductProvider(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Daftar Produk',
+        home: Skeleton(),
       ),
     );
   }
@@ -91,19 +91,20 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(999),
-                            child: FadeInImage(
-                              image: NetworkImage(product.imageUrl),
-                              height: 50,
-                              placeholder:
-                                  const AssetImage('assets/img/fallback.png'),
-                              imageErrorBuilder: (context, error, stacktrace) {
-                                return Image.asset(
-                                  'assets/img/fallback.png',
-                                  height: 50,
-                                );
-                              },
-                            )),
+                          borderRadius: BorderRadius.circular(999),
+                          child: FadeInImage(
+                            image: NetworkImage(product.imageUrl),
+                            height: 50,
+                            placeholder:
+                                const AssetImage('assets/img/fallback.png'),
+                            imageErrorBuilder: (context, error, stacktrace) {
+                              return Image.asset(
+                                'assets/img/fallback.png',
+                                height: 50,
+                              );
+                            },
+                          ),
+                        ),
                         const SizedBox(
                           width: 10,
                         ),
